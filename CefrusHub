@@ -1,6 +1,6 @@
 if game.placeId == 10598587051 then
     local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-    local Window = OrionLib:MakeWindow({Name = "Cefrus Hub | Anime Clicker Fight", HidePremium = false, IntroEnabled = true, IntroText = "Cefrus Hub",  SaveConfig = true, ConfigFolder = "OrionTest"})
+    local Window = OrionLib:MakeWindow({Name = "Void Hub | Anime Clicker Fight", HidePremium = false, IntroEnabled = true, IntroText = "Void Hub",  SaveConfig = true, ConfigFolder = "OrionTest"})
     
     -- Variables
     local Player = game.Players.LocalPlayer
@@ -12,7 +12,7 @@ if game.placeId == 10598587051 then
     _G.autoDashSpeed = 1
     
     _G.autoRun = false
-    _G.autoDash = faalse
+    _G.autoDash = false
     _G.walkspeed = 16
     _G.selectEgg = 1
     _G.selectTeleport = 1
@@ -305,16 +305,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
 
     --Credits
     Credits:AddLabel("Made by:")
-    Credits:AddLabel("Keeron")
-    Credits:AddLabel("ReaperSploits")
-    Credits:AddLabel("StonkBiznezzz")
-
-    Credits:AddButton({
-        Name = "Discord (copy link)",
-        Callback = function(Value)
-            setclipboard("https://discord.gg/J9GEjkJ")
-        end    
-    })
+    Credits:AddLabel("Stonk Biznezzz#3410")
     
     
     
