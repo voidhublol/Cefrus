@@ -133,6 +133,12 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
        ReplicatedStorage.ServerMsg.Code:InvokeServer("ONEPUNCH") 
     end
 
+    function antiAfk()
+    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+        v:Disable()
+        end
+    end
+
     function destroyGui()
         OrionLib:Destroy()
     end
@@ -409,6 +415,13 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
     })
 
     Misc:AddButton({
+        Name = "Anti Afk",
+        Callback = function(Value)
+            antiAfk()
+        end    
+    })
+
+    Misc:AddButton({
         Name = "Redeem All Codes",
         Callback = function(Value)
             redeemCodes()
@@ -431,10 +444,11 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
    local Section = Credits:AddSection({
     Name = "Creators and Developers"
 })
+    Credits:AddParagraph("Discord Server", "https://discord.gg/J9GEjkj")
     Credits:AddLabel("Made by:")
-    Credits:AddLabel("Keeron")
-    Credits:AddLabel("ReaperSploits")
-    Credits:AddLabel("Stonk Biznezzz")
+    Credits:AddLabel("Keeron#9602")
+    Credits:AddLabel("ReaperSploits | Purity#0311")
+    Credits:AddLabel("Stonk Biznezzz#3410")
     
     Credits:AddButton({
         Name = "Discord Server (Copy Link)",
@@ -456,7 +470,5 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
         Time = 30
     })
     setclipboard("https://discord.gg/J9GEjkJ")
-    
-    print("THANK YOU SO MUCH FOR USING OUR SCRIPT, IF YOU HAVE ANY PROBLEMS OR SUGGESTION, JOIN OUR DISCORD SERVER! THE LINK HAS BEEN COPIED TO YOUR CLIPBOARD")
 end
 OrionLib:Init()
