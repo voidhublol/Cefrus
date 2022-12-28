@@ -2,399 +2,431 @@ if game.placeId == 10598587051 then
     local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
     local Window = OrionLib:MakeWindow({Name = "Cefrus Hub | Anime Clicker Fight", HidePremium = false, IntroEnabled = true, IntroText = "Cefrus Hub",  SaveConfig = true, ConfigFolder = "OrionTest"})
     
-   -- Variables
-   local Player = game.Players.LocalPlayer
-   local ReplicatedStorage = game:GetService("ReplicatedStorage")
-   
-   --Values
-   _G.autoClick = false
-   _G.autoClickSpeed = 0.1
-   _G.autoDashSpeed = 1
-   
-   _G.autoRun = false
-   _G.autoDash = false
-   _G.walkspeed = 16
-   _G.selectEgg = 1
-   _G.selectTeleport = 1
+    -- Variables
+    local Player = game.Players.LocalPlayer
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    
+    --Values
+    _G.autoClick = false
+    _G.autoClickSpeed = 0.1
+    _G.autoDashSpeed = 1
+    
+    _G.autoRun = false
+    _G.autoDash = false
+    _G.walkspeed = 16
+    _G.selectEgg = 1
+    _G.selectTeleport = 1
 
-   --Functions
-   function autoClick()
-       while _G.autoClick == true do
-           ReplicatedStorage.System.SystemClick.Click:FireServer()
-           wait(_G.autoClickSpeed)
-       end
-   end
-   
-   function autoRun()
-       if _G.autoRun == true then
-           ReplicatedStorage.ServerMsg.Setting:InvokeServer("isAutoOn",1)
-       elseif _G.autoRun == false then
-           ReplicatedStorage.ServerMsg.Setting:InvokeServer("isAutoOn",0)
-       end
-   end
-   function autoDash()
-       while _G.autoDash == true do
+    --Functions
+    function autoClick()
+        while _G.autoClick == true do
+            ReplicatedStorage.System.SystemClick.Click:FireServer()
+            wait(_G.autoClickSpeed)
+        end
+    end
+
+    function autoRun()
+        if _G.autoRun == true then
+            ReplicatedStorage.ServerMsg.Setting:InvokeServer("isAutoOn",1)
+        elseif _G.autoRun == false then
+            ReplicatedStorage.ServerMsg.Setting:InvokeServer("isAutoOn",0)
+        end
+    end
+
+    function autoDash()
+        while _G.autoDash == true do
 local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875, 2345.071044921875),["PlayerId"] = game.Players.LocalPlayer.UserId},[2] = "BloxFruitDash"}
-           ReplicatedStorage.ServerMsg.ReleaseSkill:FireServer(unpack(args))
-           wait(_G.autoDashSpeed)
-       end
-   end
-   
-   function autoJump()
-       game.Players.LocalPlayer.Character.Humanoid.Jump = true
-   end 
+            ReplicatedStorage.ServerMsg.ReleaseSkill:FireServer(unpack(args))
+            wait(_G.autoDashSpeed)
+        end
+    end
+    
+    function autoJump()
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+    end 
 
-   function equipBest()
-       ReplicatedStorage.ServerMsg.WearBestPet:InvokeServer()
-   end
+    function equipBest()
+        ReplicatedStorage.ServerMsg.WearBestPet:InvokeServer()
+    end
 
-   function hatch()
-       ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(_G.selectEgg,1) 
-   end
-   
-   function setWalkspeed()
-       Player.Character.Humanoid.WalkSpeed = _G.walkspeed
-   end
-   
-   function dailySpin()
-       ReplicatedStorage.System.SystemDailyLottery.Spin:InvokeServer()
-   end
-   
-   function christmasDailyReward()
-       local args = {[1] = "\233\162\134\229\143\150\230\175\143\230\151\165\229\156\163\232\175\158\231\164\188\231\137\169"}
-       ReplicatedStorage.Msg.RemoteEvent:FireServer(unpack(args))
-   end
+    function hatch()
+        ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(_G.selectEgg,1) 
+    end
+    
+    function setWalkspeed()
+        Player.Character.Humanoid.WalkSpeed = _G.walkspeed
+    end
+    
+    function dailySpin()
+        ReplicatedStorage.System.SystemDailyLottery.Spin:InvokeServer()
+    end
+    
+    function christmasDailyReward()
+        local args = {[1] = "\233\162\134\229\143\150\230\175\143\230\151\165\229\156\163\232\175\158\231\164\188\231\137\169"}
+        ReplicatedStorage.Msg.RemoteEvent:FireServer(unpack(args))
+    end
 
-   function teleportHome()
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(1)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(2)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(3)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(4)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(5)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(6)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(7)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(8)
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(9)
-   end
-   
-   function teleportLocation()
-       ReplicatedStorage.ServerMsg.Teleport:FireServer(_G.selectTeleport) --will teleport to christmas
-   end
+    function teleportHome()
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(1)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(2)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(3)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(4)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(5)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(6)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(7)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(8)
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(9)
+    end
+    
+    function teleportLocation()
+        ReplicatedStorage.ServerMsg.Teleport:FireServer(_G.selectTeleport) --will teleport to christmas
+    end
 
-   -- Small Money Boost
-   function autoBoost()
-      ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(101)
-   end    
+    function autoBoost()
+       ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(101)
+    end    
 
-   -- Super Money Boost
-   function autoBoostt()
-       ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(201)
-    end   
+    function autoBoostt()
+        ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(201)
+     end   
 
-   --Small Lucky Boost
-   function autoBoosttt()
-       ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(301)
-   end
+    function autoBoosttt()
+        ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(301)
+    end
 
-   --Super Lucky Boost
-   function autoBoostttt()
-       ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(401)
-   end
+    function autoBoostttt()
+        ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(401)
+    end
 
-   --Omega Lucky Boost
-   function autoBoosttttt()
-       ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(501)
-   end
-   
-   function destroyGui()
-       OrionLib:Destroy()
-   end
+    function autoBoosttttt()
+        ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(501)
+    end
 
-   --Tab
-   local Main = Window:MakeTab({
-       Name = "Main", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9792462652",
-   })
+    function redeemCodes()
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("210KLIKES")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("SAITAMA")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE5")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("WELFARE1")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("MERRYCHRISTMAS") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("WELFARE2") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE5")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("WELFARE3")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("BUNNY") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("TITAN")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("ALLBLUE")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("DRAGON") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("DRAGONBALL")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("WELFARE2") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("MASK")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("RUSHRUSH") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("ONEPIECE") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("5KLIKES")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE2") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("KONODIODA")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("STANDPOWER")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("GETSUGATENSHOU")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE4") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE5")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE6")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE7") 
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE8")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("ONEPUNCH") 
+    end
 
-   local Eggs = Window:MakeTab({
-       Name = "Eggs", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9792632523",
-   })
+    function destroyGui()
+        OrionLib:Destroy()
+    end
 
-   local Boost = Window:MakeTab({
-       Name = "Boost", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9766675093",
-   })
-   local Teleport = Window:MakeTab({
-       Name = "Teleport", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9766676906",
-   })
+    --Tab
+    local Main = Window:MakeTab({
+        Name = "Main", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9792462652",
+    })
 
-   local Misc = Window:MakeTab({
-       Name = "Misc", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9766671943",
-   })
-   
-   local Credits = Window:MakeTab({
-       Name = "Credits", --change the text inside "" to change the tab name
-       Icon = "rbxassetid://9766675093",
-   })
-   local Section = Main:AddSection({
-       Name = "Auto Farm"
-   })
-   Main:AddButton({
-       Name = "Equip Best Hero",
-       Callback = function(Value)
-           equipBest()
-       end    
-   })
+    local Eggs = Window:MakeTab({
+        Name = "Eggs", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9792632523",
+    })
 
-   Main:AddToggle({
-       Name = "Auto Fast Click",
-       Default = false,
-       Callback = function(Value)
-           _G.autoClick = Value
-           autoClick()
-       end    
-   })
+    local Boost = Window:MakeTab({
+        Name = "Boost", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9766675093",
+    })
+    local Teleport = Window:MakeTab({
+        Name = "Teleport", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9766676906",
+    })
 
-   Main:AddToggle({
-       Name = "Auto Run",
-       Default = false,
-       Callback = function(Value)
-           _G.autoRun = Value
-           autoRun()
-       end    
-   })
+    local Misc = Window:MakeTab({
+        Name = "Misc", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9766671943",
+    })
+    
+    local Credits = Window:MakeTab({
+        Name = "Credits", --change the text inside "" to change the tab name
+        Icon = "rbxassetid://9766675093",
+    })
+    local Section = Main:AddSection({
+        Name = "Auto Farm"
+    })
+    Main:AddButton({
+        Name = "Equip Best Hero",
+        Callback = function(Value)
+            equipBest()
+        end    
+    })
 
-   Main:AddToggle({
-       Name = "Auto Dash",
-       Default = false,
-       Callback = function(Value)
-           _G.autoDash = Value
-           autoDash()
-       end    
-   })
-
-   Main:AddToggle({
-        Name = "Auto Jump",
+    Main:AddToggle({
+        Name = "Auto Fast Click",
         Default = false,
-       Callback = function(Value)
-       _G.autojump = Value
-       spawn(function()
-           while _G.autojump do wait(0.5)
-           pcall(function()
-               autoJump()
-                  end)
-              end
-          end)
-      end     
-   })  
+        Callback = function(Value)
+            _G.autoClick = Value
+            autoClick()
+        end    
+    })
 
-   local Section = Main:AddSection({
-       Name = "Daily Rewards"
-   })
+    Main:AddToggle({
+        Name = "Auto Run",
+        Default = false,
+        Callback = function(Value)
+            _G.autoRun = Value
+            autoRun()
+        end    
+    })
 
-   Main:AddButton({
-       Name = "Daily Spin",
-       Callback = function(Value)
-           dailySpin()
-       end    
-   })
+    Main:AddToggle({
+        Name = "Auto Dash",
+        Default = false,
+        Callback = function(Value)
+            _G.autoDash = Value
+            autoDash()
+        end    
+    })
 
-   Main:AddButton({
-       Name = "Christmas Daily Reward",
-       Callback = function(Value)
-           christmasDailyReward()
-       end
-   })
+    Main:AddToggle({
+         Name = "Auto Jump",
+         Default = false,
+        Callback = function(Value)
+		_G.autojump = Value
+		spawn(function()
+		    while _G.autojump do wait(0.5)
+			pcall(function()
+			    autoJump()
+                   end)
+		       end
+	       end)
+       end     
+    })  
 
-   local Section = Eggs:AddSection({
-       Name = "Buy Eggs"
-   })
-   Eggs:AddButton({
-       Name = "Hatch Christmas Egg (600)",
-       Callback = function(Value)
-           ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(2101,1)
-       end    
-   })
+    local Section = Main:AddSection({
+        Name = "Daily Rewards"
+    })
 
-   Eggs:AddButton({
-       Name = "Hatch Christmas Egg (6K)",
-       Callback = function(Value)
-           ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(2102,1)
-       end    
-   })
+    Main:AddButton({
+        Name = "Daily Spin",
+        Callback = function(Value)
+            dailySpin()
+        end    
+    })
 
-   Eggs:AddButton({
-       Name = "Hatch",
-       Callback = function(Value)
-           hatch()
-       end    
-   })
+    Main:AddButton({
+        Name = "Christmas Daily Reward",
+        Callback = function(Value)
+            christmasDailyReward()
+        end
+    })
 
-   Eggs:AddDropdown({
-       Name = "Select Egg",
-       Default = "Select Egg",
-       Options = {"40 Naruto Egg", "600 Naruto Egg", "2K Demon Egg", "26K Demon Egg", "330K Piece Egg", "2.40M Piece Egg", "73M Dragon Egg", "370M Dragon Egg", "7.80B Titan Egg", "36B Titan Egg", "1.10T Hero Egg", "7.10 Hero Egg", "130T Dragon Egg", "890T Dragon Egg", "17P Reaper Egg", "110P Reaper Egg", "3.70E Stand Egg", "11E Stand Egg"},
-       Callback = function(Value)
-           if Value == "¥40 Naruto Egg" then
-               _G.selectEgg = 1
-           elseif Value == "600 Naruto Egg" then
-               _G.selectEgg = 2
-           elseif Value == "2K Demon Egg" then
-               _G.selectEgg = 3
-           elseif Value == "26K Demon Egg" then
-               _G.selectEgg = 4
-           elseif Value == "330K Piece Egg" then
-               _G.selectEgg = 5
-           elseif Value == "2.40M Piece Egg" then
-               _G.selectEgg = 6
-           elseif Value == "73M Dragon Egg" then
-               _G.selectEgg = 7    
-           elseif Value == "370M Dragon Egg" then
-               _G.selectEgg = 8
-           elseif Value == "7.80B Titan Egg" then
-               _G.selectEgg = 9
-           elseif Value == "36B Titan Egg" then
-               _G.selectEgg = 10
-           elseif Value == "1.10T Hero Egg" then
-               _G.selectEgg = 11
-           elseif Value == "7.10 Hero Egg" then
-               _G.selectEgg = 12
-           elseif Value == "130T Punch Egg" then
-               _G.selectEgg = 13
-           elseif Value == "890T Dragon Egg" then
-               _G.selectEgg = 14
-           elseif Value == "17P Reaper Egg" then
-               _G.selectEgg = 15
-           elseif Value == "110P Reaper Egg" then
-               _G.selectEgg = 16
-           elseif Value == "3.70E Stand Egg" then
-               _G.selectEgg = 17
-           elseif Value == "11E Stand Egg" then
-               _G.selectEgg = 18
-           end
-       end    
-   })
+    local Section = Eggs:AddSection({
+        Name = "Buy Eggs"
+    })
+    Eggs:AddButton({
+        Name = "Hatch Christmas Egg (600)",
+        Callback = function(Value)
+            ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(2101,1)
+        end    
+    })
 
-   local Section = Boost:AddSection({
-       Name = "Use Boost"
-   })
-   --Boost
-   Boost:AddButton({
-       Name = "Small Money Boost",
-       Callback = function(Value)
-           autoBoost()
-       end    
-   })
+    Eggs:AddButton({
+        Name = "Hatch Christmas Egg (6K)",
+        Callback = function(Value)
+            ReplicatedStorage.Tool.DrawUp.Msg.DrawHero:InvokeServer(2102,1)
+        end    
+    })
 
-   Boost:AddButton({
-       Name = "Super Money Boost",
-       Callback = function(Value)
-           autoBoostt()
-       end    
-   })
+    Eggs:AddButton({
+        Name = "Hatch",
+        Callback = function(Value)
+            hatch()
+        end    
+    })
 
-   Boost:AddButton({
-       Name = "Small Lucky Boost",
-       Callback = function(Value)
-           autoBoosttt()
-       end    
-   })
+    Eggs:AddDropdown({
+        Name = "Select Egg",
+        Default = "Select Egg",
+        Options = {"40 Naruto Egg", "600 Naruto Egg", "2K Demon Egg", "26K Demon Egg", "330K Piece Egg", "2.40M Piece Egg", "73M Dragon Egg", "370M Dragon Egg", "7.80B Titan Egg", "36B Titan Egg", "1.10T Hero Egg", "7.10 Hero Egg", "130T Dragon Egg", "890T Dragon Egg", "17P Reaper Egg", "110P Reaper Egg", "3.70E Stand Egg", "11E Stand Egg"},
+        Callback = function(Value)
+            if Value == "¥40 Naruto Egg" then
+                _G.selectEgg = 1
+            elseif Value == "600 Naruto Egg" then
+                _G.selectEgg = 2
+            elseif Value == "2K Demon Egg" then
+                _G.selectEgg = 3
+            elseif Value == "26K Demon Egg" then
+                _G.selectEgg = 4
+            elseif Value == "330K Piece Egg" then
+                _G.selectEgg = 5
+            elseif Value == "2.40M Piece Egg" then
+                _G.selectEgg = 6
+            elseif Value == "73M Dragon Egg" then
+                _G.selectEgg = 7    
+            elseif Value == "370M Dragon Egg" then
+                _G.selectEgg = 8
+            elseif Value == "7.80B Titan Egg" then
+                _G.selectEgg = 9
+            elseif Value == "36B Titan Egg" then
+                _G.selectEgg = 10
+            elseif Value == "1.10T Hero Egg" then
+                _G.selectEgg = 11
+            elseif Value == "7.10 Hero Egg" then
+                _G.selectEgg = 12
+            elseif Value == "130T Punch Egg" then
+                _G.selectEgg = 13
+            elseif Value == "890T Dragon Egg" then
+                _G.selectEgg = 14
+            elseif Value == "17P Reaper Egg" then
+                _G.selectEgg = 15
+            elseif Value == "110P Reaper Egg" then
+                _G.selectEgg = 16
+            elseif Value == "3.70E Stand Egg" then
+                _G.selectEgg = 17
+            elseif Value == "11E Stand Egg" then
+                _G.selectEgg = 18
+            end
+        end    
+    })
 
-   Boost:AddButton({
-       Name = "Super Lucky Boost",
-       Callback = function(Value)
-           autoBoostttt()
-       end    
-   })
+    local Section = Boost:AddSection({
+        Name = "Use Boost"
+    })
+    --Boost
+    Boost:AddButton({
+        Name = "Small Money Boost",
+        Callback = function(Value)
+            autoBoost()
+        end    
+    })
 
-   Boost:AddButton({
-       Name = "Omega Lucky Boost",
-       Callback = function(Value)
-           autoBoosttttt()
-       end    
-   })
-   
-   
-   local Section = Teleport:AddSection({
-       Name = "Teleport"
-   })
-   Teleport:AddButton({
-       Name = "Teleport Christmas",
-       Callback = function(Value)
-           ReplicatedStorage.ServerMsg.Teleport:FireServer(0)
-       end    
-   })
-   
-   Teleport:AddButton({
-       Name = "Teleport Home",
-       Callback = function(Value)
-           teleportHome()
-       end    
-   })
+    Boost:AddButton({
+        Name = "Super Money Boost",
+        Callback = function(Value)
+            autoBoostt()
+        end    
+    })
 
-   Teleport:AddButton({
-       Name = "Teleport",
-       Callback = function(Value)
-           teleportLocation()
-       end    
-   })
+    Boost:AddButton({
+        Name = "Small Lucky Boost",
+        Callback = function(Value)
+            autoBoosttt()
+        end    
+    })
 
-       Teleport:AddDropdown({
-       Name = "Select Location",
-       Default = "Naruto",
-       Options = {"Naruto", "Demon", "Piece", "Dragon", "Titan", "Punch", "Hero", "Reaper", "Stand"},
-       Callback = function(Value)
-           if Value == "Naruto" then
-               _G.selectTeleport = 1
-           elseif Value == "Demon" then
-               _G.selectTeleport = 2
-           elseif Value == "Piece" then
-               _G.selectTeleport = 3
-           elseif Value == "Dragon" then
-               _G.selectTeleport = 4
-           elseif Value == "Titan" then
-               _G.selectTeleport = 5
-           elseif Value == "Punch" then
-               _G.selectTeleport = 6
-           elseif Value == "Hero" then
-               _G.selectTeleport = 7
-           elseif Value == "Reaper" then
-               _G.selectTeleport = 8
-           elseif Value == "Stand" then
-               _G.selectTeleport = 9
-           end
-       end    
-   })
+    Boost:AddButton({
+        Name = "Super Lucky Boost",
+        Callback = function(Value)
+            autoBoostttt()
+        end    
+    })
 
-   local Section = Misc:AddSection({
-       Name = "Miscellaneous"
+    Boost:AddButton({
+        Name = "Omega Lucky Boost",
+        Callback = function(Value)
+            autoBoosttttt()
+        end    
+    })
+    
+    
+    local Section = Teleport:AddSection({
+        Name = "Teleport"
+    })
+    Teleport:AddButton({
+        Name = "Teleport Christmas",
+        Callback = function(Value)
+            ReplicatedStorage.ServerMsg.Teleport:FireServer(0)
+        end    
+    })
+    
+    Teleport:AddButton({
+        Name = "Teleport Home",
+        Callback = function(Value)
+            teleportHome()
+        end    
+    })
 
-   })
+    Teleport:AddButton({
+        Name = "Teleport",
+        Callback = function(Value)
+            teleportLocation()
+        end    
+    })
 
-   Misc:AddButton({
-       Name = "Destroy Gui",
-       Callback = function(Value)
-           destroyGui()
-       end    
-   })
+        Teleport:AddDropdown({
+        Name = "Select Location",
+        Default = "Naruto",
+        Options = {"Naruto", "Demon", "Piece", "Dragon", "Titan", "Punch", "Hero", "Reaper", "Stand"},
+        Callback = function(Value)
+            if Value == "Naruto" then
+                _G.selectTeleport = 1
+            elseif Value == "Demon" then
+                _G.selectTeleport = 2
+            elseif Value == "Piece" then
+                _G.selectTeleport = 3
+            elseif Value == "Dragon" then
+                _G.selectTeleport = 4
+            elseif Value == "Titan" then
+                _G.selectTeleport = 5
+            elseif Value == "Punch" then
+                _G.selectTeleport = 6
+            elseif Value == "Hero" then
+                _G.selectTeleport = 7
+            elseif Value == "Reaper" then
+                _G.selectTeleport = 8
+            elseif Value == "Stand" then
+                _G.selectTeleport = 9
+            end
+        end    
+    })
 
+    local Section = Misc:AddSection({
+        Name = "Miscellaneous"
 
-   local walkspeedSlider = Misc:AddSlider({
-   Name = "Walkspeed",
-   Min = 0,
-   Max = 1000,
-   Default = 16,
-   Color = Color3.fromRGB(255,255,255),
-   Increment = 1,
-   ValueName = "Walkspeed",
-   Callback = function(Value)
-       _G.walkspeed = Value
-   end    
-   })
+    })
 
+    Misc:AddButton({
+        Name = "Destroy Gui",
+        Callback = function(Value)
+            destroyGui()
+        end    
+    })
+
+    Misc:AddButton({
+        Name = "Redeem All Codes",
+        Callback = function(Value)
+            redeemCodes()
+        end    
+    })
+
+    local walkspeedSlider = Misc:AddSlider({
+	Name = "Walkspeed",
+	Min = 0,
+	Max = 1000,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Walkspeed",
+	Callback = function(Value)
+	    _G.walkspeed = Value
+	end    
+    })
 
    local Section = Credits:AddSection({
     Name = "Creators and Developers"
