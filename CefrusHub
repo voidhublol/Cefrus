@@ -92,7 +92,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
 
     function autoBoostt()
         ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(201)
-     end   
+    end   
 
     function autoBoosttt()
         ReplicatedStorage.ServerMsg.UseItemByItemID:InvokeServer(301)
@@ -457,7 +457,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
    local Section = Credits:AddSection({
     Name = "Creators and Developers"
 })
-    Credits:AddParagraph("Discord Server", "https://discord.gg/J9GEjkj")
+    Credits:AddParagraph("Discord Server", "https://discord.gg/J9GEjkJ")
     Credits:AddLabel("Made by:")
     Credits:AddLabel("Keeron#9602")
     Credits:AddLabel("ReaperSploits | Purity#0311")
@@ -478,7 +478,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
 
     OrionLib:MakeNotification({
         Name = "Reminders!",
-        Content = "If you have any Ideas and Bugs that you encountered, please join are discord server and let us know!. (Our discord server has been copied in your clipboard)",
+        Content = "If you have any Ideas or Bugs that you encountered, please join are Discord Server and let us know! (Our Discord Server has been copied in your clipboard)",
         Image = "rbxassetid://9838873385",
         Time = 30
     })
