@@ -41,10 +41,6 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
         end
     end
     
-    function autoJump()
-        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-    end 
-
     function equipBest()
         ReplicatedStorage.ServerMsg.WearBestPet:InvokeServer()
     end
@@ -134,15 +130,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
        ReplicatedStorage.ServerMsg.Code:InvokeServer("UPDATE6")
        ReplicatedStorage.ServerMsg.Code:InvokeServer("ONEPUNCH")
        ReplicatedStorage.ServerMsg.Code:InvokeServer("SHIPPUDEN")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("SASUKE")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("NINJAPLACE")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("SWEETHOME")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("LIBERTY")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("LIBERTY")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("ACADEMIA")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("MIDORIYALZUKU")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("BLEACH")
-       ReplicatedStorage.ServerMsg.Code:InvokeServer("BLEACHUPDATE7")
+       ReplicatedStorage.ServerMsg.Code:InvokeServer("SASUKE")  
     end
 
     function antiAfk()
@@ -219,7 +207,7 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
             autoClick()
         end    
     })
-    
+
     Farm:AddToggle({
         Name = "Auto Run",
         Default = false,
@@ -237,21 +225,6 @@ local args = {[1] = {["Goal"] = Vector3.new(-47.122676849365234, 2.9998779296875
             autoDash()
         end    
     })
-
-    Farm:AddToggle({
-         Name = "Auto Jump",
-         Default = false,
-        Callback = function(Value)
-		_G.autojump = Value
-		spawn(function()
-		    while _G.autojump do wait(0.5)
-			pcall(function()
-			    autoJump()
-                   end)
-		       end
-	       end)
-       end     
-    })  
 
     local Section = Farm:AddSection({
         Name = "Daily Rewards"
